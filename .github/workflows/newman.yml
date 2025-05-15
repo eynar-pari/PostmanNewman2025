@@ -1,0 +1,24 @@
+
+name: Run Newman
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: nodejs
+      uses: action/setup-node@v2
+    
+    - name: install newman
+      uses: npm install -g newman
+    
+    - name: run test
+      uses: newman run 2025JB_API.postman_collection.json
+      
